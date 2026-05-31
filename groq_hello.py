@@ -3,11 +3,11 @@ from groq import Groq
 
 # ── 1. Set your API key here (or set it as an environment variable) ──
 # Option A: paste your key directly (not recommended for sharing)
-# os.environ["GROQ_API_KEY"] = "gsk_your_key_here"
+# os.environ["GROQ_API_KEY"] = "REMOVED_key_here"
 
 # Option B (recommended): set it in your terminal first:
-#   Windows PowerShell : $env:GROQ_API_KEY="gsk_your_key_here"
-#   Mac/Linux terminal : export GROQ_API_KEY="gsk_your_key_here"
+#   Windows PowerShell : $env:GROQ_API_KEY="REMOVED_key_here"
+#   Mac/Linux terminal : export GROQ_API_KEY="REMOVED_key_here"
 
 # ── 2. Create the Groq client ────────────────────────────────────────
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))

@@ -11,7 +11,7 @@ from email.mime.multipart import MIMEMultipart
 import os
 
 app = Flask(__name__)
-client = Groq(api_key="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", timeout=60.0)
+client = Groq(api_key="REMOVED", timeout=60.0)
 
 EXCEL_FILE = "chirag_bugs.xlsx"
 conversation = []

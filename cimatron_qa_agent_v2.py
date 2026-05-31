@@ -11,7 +11,7 @@ RESET  = "\033[0m"
 BOLD   = "\033[1m"
 
 # ── Your API Key ──────────────────────────────────────────────────────
-client = Groq(api_key="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", timeout=60.0)
+client = Groq(api_key="REMOVED", timeout=60.0)
 
 # ── Agent Personality ─────────────────────────────────────────────────
 system_prompt = """
