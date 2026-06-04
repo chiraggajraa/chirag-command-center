@@ -6,7 +6,7 @@ import re
 import traceback
 
 app = Flask(__name__)
-client = Groq(api_key="REMOVED", timeout=60.0)
+client = Groq(api_key="", timeout=60.0)
 
 doc_text = ""
 conversation = []

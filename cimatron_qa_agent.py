@@ -1,7 +1,7 @@
 from groq import Groq
 
 # ── Your API Key ─────────────────────────────────────────────────────
-client = Groq(api_key="REMOVED", timeout=60.0)
+client = Groq(api_key="GROQ_API_KEY", timeout=60.0)
 
 # ── Agent Personality (System Prompt) ────────────────────────────────
 system_prompt = """
