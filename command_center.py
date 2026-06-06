@@ -8,10 +8,9 @@ import smtplib
 import traceback
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import os
 
 app = Flask(__name__)
-client = Groq(api_key="GROQ_API_KEY", timeout=60.0)
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"), timeout=60.0)
 
 EXCEL_FILE = "chirag_bugs.xlsx"
 conversation = []
@@ -216,7 +215,7 @@ if __name__ == "__main__":
     print("  🌐 Open: http://127.0.0.1:5000")
     print("  🛑 Stop: Ctrl+C")
     print("="*52+"\n")
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
+    app.run(port=5000, debug=True)
 
 # PWA routes
 @app.route("/manifest.json")

@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, jsonify
 from groq import Groq
 import PyPDF2
@@ -6,7 +8,7 @@ import re
 import traceback
 
 app = Flask(__name__)
-client = Groq(api_key="", timeout=60.0)
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"), timeout=60.0)
 
 doc_text = ""
 conversation = []

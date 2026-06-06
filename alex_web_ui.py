@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify, render_template_string
 from groq import Groq
+import os
 
 app = Flask(__name__)
-client = Groq(api_key="GROQ_API_KEY", timeout=60.0)
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"), timeout=60.0)
 
 conversation = []
 

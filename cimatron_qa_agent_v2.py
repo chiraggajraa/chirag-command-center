@@ -1,5 +1,6 @@
 from groq import Groq
 from datetime import datetime
+import os
 
 # ── Colors ────────────────────────────────────────────────────────────
 GREEN  = "\033[92m"
@@ -11,7 +12,7 @@ RESET  = "\033[0m"
 BOLD   = "\033[1m"
 
 # ── Your API Key ──────────────────────────────────────────────────────
-client = Groq(api_key="GROQ_API_KEY", timeout=60.0)
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"), timeout=60.0)
 
 # ── Agent Personality ─────────────────────────────────────────────────
 system_prompt = """
