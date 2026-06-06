@@ -11,6 +11,7 @@ from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"), timeout=60.0)
+print(f"API Key loaded: {bool(os.environ.get('GROQ_API_KEY'))}")
 
 EXCEL_FILE = "chirag_bugs.xlsx"
 conversation = []
