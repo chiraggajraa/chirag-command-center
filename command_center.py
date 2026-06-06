@@ -215,7 +215,7 @@ if __name__ == "__main__":
     print("  🌐 Open: http://127.0.0.1:5000")
     print("  🛑 Stop: Ctrl+C")
     print("="*52+"\n")
-    app.run(port=5000, debug=True)
+ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
 
 # PWA routes
 @app.route("/manifest.json")
