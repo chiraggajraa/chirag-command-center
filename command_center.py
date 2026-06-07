@@ -84,7 +84,6 @@ def get_bugs():
 def home():
     return open("command_center.html", encoding="utf-8").read()
 
-# Chat
 @app.route("/chat", methods=["POST"])
 def chat():
     global conversation
@@ -101,7 +100,6 @@ def chat():
     except Exception as e:
         return jsonify({"reply": f"Error: {str(e)}"})
 
-# Analyze bug
 @app.route("/analyze", methods=["POST"])
 def analyze():
     try:
@@ -136,7 +134,6 @@ Respond with valid JSON only."""},
         print(traceback.format_exc())
         return jsonify({"type":"chat","message":str(e)})
 
-# Log bug
 @app.route("/log", methods=["POST"])
 def log():
     try:
@@ -146,7 +143,6 @@ def log():
     except Exception as e:
         return jsonify({"success":False,"error":str(e)})
 
-# Get all bugs
 @app.route("/bugs", methods=["GET"])
 def bugs():
     try:
@@ -154,7 +150,6 @@ def bugs():
     except Exception as e:
         return jsonify({"bugs":[],"error":str(e)})
 
-# Send email report
 @app.route("/email", methods=["POST"])
 def send_email():
     try:
@@ -164,14 +159,11 @@ def send_email():
         recipient = data.get("recipient")
         subject   = data.get("subject","Cimatron Bug Report from Chirag")
         body      = data.get("body","")
-
         msg = MIMEMultipart("alternative")
         msg["Subject"] = subject
         msg["From"]    = sender
         msg["To"]      = recipient
-
-        html_body = f"""
-        <html><body style="font-family:sans-serif;background:#0a0e1a;color:#c8d8e8;padding:20px">
+        html_body = f"""<html><body style="font-family:sans-serif;background:#0a0e1a;color:#c8d8e8;padding:20px">
         <div style="background:#0f1628;border:1px solid #1e3a5f;border-radius:12px;padding:24px;max-width:600px">
           <h2 style="color:#00d4ff">🔧 Chirag — Cimatron QA Report</h2>
           <p style="color:#4a6080;font-size:12px">{datetime.now().strftime("%Y-%m-%d %H:%M")}</p>
@@ -180,20 +172,16 @@ def send_email():
           <hr style="border-color:#1e3a5f"/>
           <p style="color:#4a6080;font-size:11px">Sent by Chirag Command Center</p>
         </div></body></html>"""
-
         msg.attach(MIMEText(body, "plain"))
         msg.attach(MIMEText(html_body, "html"))
-
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(sender, password)
             server.sendmail(sender, recipient, msg.as_string())
-
         return jsonify({"success":True,"message":f"Email sent to {recipient}"})
     except Exception as e:
         print(traceback.format_exc())
         return jsonify({"success":False,"error":str(e)})
 
-# Dashboard stats
 @app.route("/stats", methods=["GET"])
 def stats():
     try:
@@ -210,15 +198,7 @@ def stats():
     except Exception as e:
         return jsonify({"error":str(e)})
 
-if __name__ == "__main__":
-    print("\n"+"="*52)
-    print("  🧠 Chirag Command Center")
-    print("  🌐 Open: http://127.0.0.1:5000")
-    print("  🛑 Stop: Ctrl+C")
-    print("="*52+"\n")
- app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
-
-# PWA routes
+# ── PWA Routes ────────────────────────────────────────────────────────
 @app.route("/manifest.json")
 def manifest():
     return send_file("manifest.json", mimetype="application/manifest+json")
@@ -226,3 +206,12 @@ def manifest():
 @app.route("/service_worker.js")
 def sw():
     return send_file("service_worker.js", mimetype="application/javascript")
+
+# ── Run ───────────────────────────────────────────────────────────────
+if __name__ == "__main__":
+    print("\n" + "="*52)
+    print("  🧠 Chirag Command Center")
+    print("  🌐 Open: http://127.0.0.1:5000")
+    print("  🛑 Stop: Ctrl+C")
+    print("="*52 + "\n")
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
