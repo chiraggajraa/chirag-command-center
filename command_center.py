@@ -208,6 +208,13 @@ def sw():
     return send_file("service_worker.js", mimetype="application/javascript")
 
 # ── Run ───────────────────────────────────────────────────────────────
+@app.route("/download/bugs")
+def download_bugs():
+    if os.path.exists(EXCEL_FILE):
+        return send_file(EXCEL_FILE, as_attachment=True, download_name="chirag_bugs.xlsx")
+    return jsonify({"error": "No bugs file found yet"})
+
+
 if __name__ == "__main__":
     print("\n" + "="*52)
     print("  🧠 Chirag Command Center")
